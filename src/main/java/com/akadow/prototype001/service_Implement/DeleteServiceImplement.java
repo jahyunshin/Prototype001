@@ -19,11 +19,11 @@ public class DeleteServiceImplement implements DeleteService {
         this.dataService = dataService;
     }
 
-    public Map<String, String> excludedMap(String key) {
+    public Map<String, String> excludedChorusMap(String key) {
         return Optional.ofNullable(dataService.chorusMap())
                 .map(map -> {
                     map.remove(key);
                     return map;
-                }).orElseGet(() -> new HashMap<>());
+                }).orElseGet(HashMap::new);
     }
 }

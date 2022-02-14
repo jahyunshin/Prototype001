@@ -4,6 +4,6 @@ import java.util.Map;
 
 public interface DeleteService {
 
-    Map<String, String> excludedMap(String key);
+    Map<String, String> excludedChorusMap(String key);
 
 }
