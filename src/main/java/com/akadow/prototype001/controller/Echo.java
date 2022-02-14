@@ -1,10 +1,10 @@
 package com.akadow.prototype001.controller;
 
 import com.akadow.prototype001.service.DummyService;
-import com.akadow.prototype001.service.EchoService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -24,11 +24,14 @@ public class Echo {
 
     @GetMapping("custom/{command}")
     public @ResponseBody Map<String, String> customCommand(@PathVariable("command") String command) {
+        Map<String, String> returnMap = new HashMap<>();
         switch (command) {
             case "dummy":
                 return dummyService.createEcho();
-            default:
+            case "none":
                 return Collections.singletonMap("key", "Not Matched.");
+            default:
+                return new HashMap<>();
         }
     }
 
