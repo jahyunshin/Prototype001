@@ -1,19 +1,35 @@
 package com.akadow.prototype001.controller;
 
-import org.springframework.stereotype.Controller;
+import com.akadow.prototype001.service.DummyService;
+import com.akadow.prototype001.service.EchoService;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
-@RequestMapping(value="/echo")
+import java.util.Collections;
+import java.util.Map;
+
+@RestController
+@RequestMapping(value="echo")
 public class Echo {
 
-    @GetMapping("")
-    public @ResponseBody String first() {
-        return "## Called echo";
+    final private DummyService dummyService;
+
+    private Echo(DummyService dummyService) {
+        this.dummyService = dummyService;
     }
 
-    @PostMapping("custom/{command}")
-    public @ResponseBody String customCommand(@PathVariable("command") String command) {
-        return "## Called : " + command;
+    @GetMapping("")
+    public String first() {
+        return "## Called echo";
+    }//omitted @ResponseBody
+
+    @GetMapping("custom/{command}")
+    public @ResponseBody Map<String, String> customCommand(@PathVariable("command") String command) {
+        switch (command) {
+            case "dummy":
+                return dummyService.createEcho();
+            default:
+                return Collections.singletonMap("key", "Not Matched.");
+        }
     }
+
 }
