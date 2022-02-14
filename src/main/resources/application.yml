@@ -1,3 +1,6 @@
 spring:
   profiles:
     active: prod
+
+logging:
+  config: classpath:log4j2.yml
