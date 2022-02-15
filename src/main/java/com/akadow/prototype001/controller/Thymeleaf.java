@@ -16,14 +16,14 @@ public class Thymeleaf {
     public DummyService dummyService;
 
     @Autowired
-    public void setDummyService(DummyService dummyService) {
+    private void setDummyService(DummyService dummyService) {
         this.dummyService = dummyService;
     }
 
     @GetMapping("sample")
-    public String sample(Model model) {
+    private String sample(Model model) {
         model.addAllAttributes(dummyService.createThymeleaf());
-        log.info("dummyService.createThymeleaf() : " + dummyService.createThymeleaf());
+        log.info("## dummyService.createThymeleaf() : " + dummyService.createThymeleaf());
         return "sample";
     }
 

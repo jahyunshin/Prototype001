@@ -17,19 +17,20 @@ public class Echo {
         this.dummyService = dummyService;
     }
 
+    private Map<String, String> notMatchedMap = Collections.singletonMap("key", "Not Matched.");
+
     @GetMapping("")
-    public String first() {
+    private String first() {
         return "## Called echo";
     }//omitted @ResponseBody
 
     @GetMapping("custom/{command}")
-    public @ResponseBody Map<String, String> customCommand(@PathVariable("command") String command) {
-        Map<String, String> returnMap = new HashMap<>();
+    private @ResponseBody Map<String, String> customCommand(@PathVariable("command") String command) {
         switch (command) {
             case "dummy":
                 return dummyService.createEcho();
             case "none":
-                return Collections.singletonMap("key", "Not Matched.");
+                return notMatchedMap;
             default:
                 return new HashMap<>();
         }
