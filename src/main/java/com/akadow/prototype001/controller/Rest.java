@@ -26,7 +26,7 @@ public class Rest {
         this.dummyService = dummyService;
     }
 
-    private Map<String, String> notMatchedMap = Collections.singletonMap("key", "Not Matched.");
+    private final Map<String, String> notMatchedMap = Collections.singletonMap("key", "Not Matched.");
 
     @GetMapping("")
     private ResponseEntity<String> first() {
